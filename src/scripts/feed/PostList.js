@@ -26,7 +26,7 @@ export const postList = () => {
         <h3>${post.title}</h3>
         <img class="post__image" src = "${post.imageURL}"></img>
         <div class="">${post.description}</div>
-       <div class="post__tagline">posted by ${username} on ${finaldate}</div>
+       <div class="post__tagline">posted by ${username} on </div>
        </div>
         `
     })
