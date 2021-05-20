@@ -41,3 +41,7 @@ export const fetchPosts = () => {
 export const getUsers = () => {
     return [...applicationState.users]
 }
+
+export const getPosts = () => {
+    return [...applicationState.posts]
+}
