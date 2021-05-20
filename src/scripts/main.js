@@ -6,6 +6,7 @@ import { GiffyGram } from "./GiffyGram.js"
 
 const applicationElement = document.querySelector(".giffygram")
 
+// On page load 
 export const renderApp = () => {
     const user = parseInt(localStorage.getItem("gg_user"))
 
@@ -22,3 +23,10 @@ export const renderApp = () => {
 }
 
 renderApp()
+
+
+// "stateChanged" event listener
+applicationElement.addEventListener(
+    "stateChanged", customEvent => {
+        renderApp()
+    })
