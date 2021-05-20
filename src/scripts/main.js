@@ -1,4 +1,3 @@
-
 import { LoginForm } from "./auth/Login.js"
 import { fetchPosts, fetchUsers } from "./data/provider.js"
 import { GiffyGram } from "./GiffyGram.js"
