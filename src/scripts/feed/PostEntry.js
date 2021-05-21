@@ -3,7 +3,7 @@ import { getUsers, sendNewPost } from "../data/provider.js"
 
 const applicationElement = document.querySelector(".giffygram")
 
-// Click event for Post Entry form
+// Click event for Post Entry form Save Button
 applicationElement.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "newPost__submit") {
         //TODO: Need to find currentUser
@@ -29,11 +29,46 @@ applicationElement.addEventListener("click", clickEvent => {
     }
 })
 
+// Click event for Cancel Button
+applicationElement.addEventListener("click",
+    clickEvent => {
+        if (clickEvent.target.id === "newPost__cancel") {
+            const hideEntryForm = document.querySelector(".newPost")
+            hideEntryForm.innerHTML = miniMode()
+        }
+})
+
+// Click event for Mini Mode HTML box
+applicationElement.addEventListener("click",
+    clickEvent => {
+        if (clickEvent.target.id === "miniMode") {
+            const showEntryForm = document.querySelector(".newPost")
+            showEntryForm.innerHTML = postEntryForm()
+        }
+    })
 
 
 
-// Post Entry form to render to DOM
+
+
+// Function to show or hide new post form
 export const PostEntry = () => {
+    return miniMode() // Need to find a way to keep form showing after saving post
+    
+}
+
+
+
+// Post Mini Mode Html
+const miniMode = () => {
+    return `
+    <div class="miniMode" id="miniMode">Have a gif to post?</div>
+    `
+}
+
+
+// Post Entry form Html 
+const postEntryForm = () => {
     return `
     <div>
         <input value name="postTitle" class="newPost__input" type="text" placeholder="Title">
@@ -48,3 +83,4 @@ export const PostEntry = () => {
     <button id="newPost__cancel">Cancel</button>
     `
 }
+
