@@ -20,7 +20,7 @@ document.addEventListener(
 export const getNavBar = () => {
     let html = `<nav class= "navigation">`
 
-    html += `<div class= "navigation__item navigation__icon"> <img src= "../images/pb.png" alt= "logo of peanut butter jar" id= "logo"/></div>`
+    html += `<div class= "navigation__item navigation__icon"> <img class= "navigation__icon logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>`
 
     html += `<div class= "navigation__item navigation__name">GiffyGram</div>`
 
