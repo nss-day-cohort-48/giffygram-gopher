@@ -53,8 +53,12 @@ applicationElement.addEventListener("click",
 
 // Function to show or hide new post form
 export const PostEntry = () => {
-    return miniMode() // Need to find a way to keep form showing after saving post
-    
+     // Need to find a way to keep form showing after saving post
+    if (document.querySelector(".newPost") === document.querySelector(".miniMode")) {
+        return miniMode()
+    } else {
+        return postEntryForm()
+    }
 }
 
 
