@@ -1,18 +1,24 @@
+import { getUsers } from "../data/provider.js"
 
 
 export const DirectMessageForm = () => {
-    let messageHTML = ``
-
-
+    const users = getUsers()
+    let messageHTML = ` `
 
     messageHTML += `
     <div class="directMessage">
         <h3>Direct Message</h3>
         <div>
-            "Recipient"
+            Recipient
             <select name="directMessage__userSelect" class="message__input">
                 <option>Choose a recipient...</option>
-                
+                ${
+                    users.map(
+                        user => {
+                            return `<option value="${user.id}">${user.name}</option>`
+                        }
+                    ).join("")
+                }
             </select>
         </div>
         <div>
@@ -24,4 +30,7 @@ export const DirectMessageForm = () => {
         <button id="directMessage__cancel">Cancel</button>
         <button id="directMessage__close">x</button>
     </div>`
+
+    return messageHTML
 }
+
