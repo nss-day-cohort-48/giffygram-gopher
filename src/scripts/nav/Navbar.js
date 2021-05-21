@@ -1,13 +1,24 @@
-//Navbar items LTR
-//1. Logo that rerenders html w/ ./images/pb.png & event listener
-//2. Page title - with event listener/re-render html?
-//3. Compose DM button w/ ./images/fountain-pen.svg, add event listener
-//4. Read new messages button, add event listener
-//5. Logout button, add event listener
+export const getNavBar = () => {
+    let html = `<nav class= "navigation">
+    <div class= "navigation__item navigation__icon"> <img id= "logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>
+    <div class= "navigation__item navigation__name">GiffyGram</div>`
 
-// import { getMessages, setMessageDisplay } from "./data/provider.js" // original site imports {clearFilters} from same module
+    // <div class= "navigation__item navigation__search"></div>
 
+    html += `<div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
+    <div class= "notification__count">0</div>
+    </div>
 
+    <div class= "navigation__item navigation__logout"> <button id="logout" class="fakeLink">Logout</button></div>
+    </nav>`
+
+    return html
+}
+
+// import { getMessages, setMessageDisplay } from "./data/provider.js"
+// original site imports {clearFilters} from same module
+
+// click icon to re-render app
 document.addEventListener(
     "click",
     (clickEvent) => {
@@ -17,6 +28,7 @@ document.addEventListener(
     }
 )
 
+// click site title to re-render app
 document.addEventListener(
     "click",
     (clickEvent) => {
@@ -26,85 +38,48 @@ document.addEventListener(
     }
 )
 
-// event listener for compose DM
-/*document.addEventListener(
+/* event listener for compose DM ---
+document.addEventListener(
     "click",
     (clickEvent) => {
         if (clickEvent.target.id === "navigation__message") {
-
-
-// event listener for read new DMs
-// event listener for logout */
-
-export const getNavBar = () => {
-    let html = `<nav class= "navigation">
-    <div class= "navigation__item navigation__icon"> <img id= "logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>
-    <div class= "navigation__item navigation__name">GiffyGram</div>
-    <div class= "navigation__item navigation__search"></div>
-    <div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
-    <div class= "notification__count">0</div>
-    <div class= "navigation__item navigation__logout"> <button id="logout" class="fakeLink">Logout</button></div>
-    </nav>`
-
-    return html
-}
-
-/* CSS classes & IDs
-navigation (header bar), navigation__item, navigation__name (title), navigation__icon >img (logo), 
-navigation__message, navigation__message>img, navigation__messageItem, notification__count, navigation__logout,
-#directMessageIcon, fakeLink
-/*
-
-/* EXAMPLE - export html
-export const Interiors = () => {
-    let html = "<ul>"
-
-    // Use .map() for converting objects to <li> elements
-    const listItems = interiors.map(interior => {
-        return `<li>
-            <input type="radio" name="interior" value="${interior.id}" /> ${interior.colorType}
-        </li>`
+            *** render msg entry form
+        }
     })
-
-    html += listItems.join("")
-    html += "</ul>"
-
-    return html
-}
 */
 
+/* event listener for reading new DMs ---
+document.addEventListener(
+        "click",
+        (clickEvent) => {
+            if (clickEvent.target.id === "notification__count") 
+            ???
+        }
+    )
+*/
+// event listener for new DMs counter
+
+
+// event listener for logout - clear temp state/go to login 
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        if (clickEvent.target.id === "logout") {
+            let user = parseInt(localStorage.getItem("gg_user"))
+            if (user >= 0) {
+                localStorage.clear();
+                document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        }
+
+    }
+)
+
+
+
+
+
 /* ORIGINAL SITE
-const a17_0x596e = ['887FClVyD', 'removeItem', '<nav\class=\
-navigation\
->\
-<div\class=\
-navigation__item\navigation__icon\
->\\<img\src=\
-/images/pb.png\
-\alt=\
-Giffygram\icon\
-\id=\
-logo\
-\/>\</div>\
-
-<div\class=\
-navigation__item\navigation__name\
->\\Giffygram\</div>\
-
-<div\class=\
-navigation__item\navigation__search\
->\\</div>\
-
-<div\class=\
-navigation__item\navigation__message\
->\\<img\id=\
-directMessageIcon\
-\src=\
-/images/fountain-pen.svg\
-\alt=\
-Direct\message\
-\/>\\
-
 <div\class=\
 notification__count\
 >', 'querySelector', '1onsVkd', '1030817lrhTQE', 'length', 'stateChanged', '27AvxxJC', 'logout', '268341JycpmJ', 'addEventListener', 
@@ -172,16 +147,3 @@ export const NavBar = ()=>{
 }
 ;
 */
-
-// NOTES Fri May 21
-/*
-// event listener for compose DM
-/*document.addEventListener(
-    "click",
-    (clickEvent) => {
-        if (clickEvent.target.id === "navigation__message") {
-            direct to msg entry form
-
-
-// event listener for read new DMs event listener .length on msgs array by id
-// event listener for logout - event listener for clear temp state/go to login */
