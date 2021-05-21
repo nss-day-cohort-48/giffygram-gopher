@@ -35,6 +35,13 @@ export const fetchPosts = () => {
     })
 }
 
+export const fetchDirectMessages = () => {
+    return fetch(`${apiURL}/directMessages`)
+    .then(response => response.json())
+    .then(directMessageData => {
+        applicationState.directMessages = directMessageData
+    })
+}
 
 
 
@@ -65,4 +72,8 @@ export const getUsers = () => {
 
 export const getPosts = () => {
     return [...applicationState.posts]
+}
+
+export const getDirectMessages = () => {
+    return [...applicationState.directMessages]
 }
