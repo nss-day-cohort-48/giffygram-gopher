@@ -1,5 +1,5 @@
 import { PostEntry } from "./feed/PostEntry.js"
-
+import {postList} from "./feed/PostList.js"
 
 
 export const GiffyGram = () => {
@@ -14,7 +14,7 @@ export const GiffyGram = () => {
         </div>
     
 
-        <section class="post"></section>
+        <section class="post">${postList()}</section>
     </article>
 
     <footer class="footer"></footer>
