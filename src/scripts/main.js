@@ -1,6 +1,6 @@
 
 import { LoginForm } from "./auth/Login.js"
-import { fetchPosts, fetchUsers } from "./data/provider.js"
+import { fetchDirectMessages, fetchPosts, fetchUsers } from "./data/provider.js"
 import { GiffyGram } from "./GiffyGram.js"
 
 
@@ -11,7 +11,7 @@ export const renderApp = () => {
     const user = parseInt(localStorage.getItem("gg_user"))
 
     // Call fetches here before any html loads
-    fetchUsers().then(fetchPosts).then(
+    fetchUsers().then(fetchPosts).then(fetchDirectMessages).then(
         () => {
             if (user) {
                 applicationElement.innerHTML = GiffyGram()
