@@ -17,20 +17,34 @@ document.addEventListener(
     }
 )
 
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        if (clickEvent.target.id === "navigation__name") {
+            document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+        }
+    }
+)
+
+// event listener for compose DM
+/*document.addEventListener(
+    "click",
+    (clickEvent) => {
+        if (clickEvent.target.id === "navigation__message") {
+
+
+// event listener for read new DMs
+// event listener for logout */
+
 export const getNavBar = () => {
-    let html = `<nav class= "navigation">`
-
-    html += `<div class= "navigation__item navigation__icon"> <img class= "navigation__icon logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>`
-
-    html += `<div class= "navigation__item navigation__name">GiffyGram</div>`
-
-    // html += <div class= "navigation__item" id= "navigation__search"></div>  **this was on original site
-
-    html += `<div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>`
-
-    html += `<div class = "notification__count navigation__messageItem navigation__item">< /div>`
-
-    html += '<div class= "navigation__item navigation__logout"> <button>Logout</button> </div> </nav>'
+    let html = `<nav class= "navigation">
+    <div class= "navigation__item navigation__icon"> <img id= "logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>
+    <div class= "navigation__item navigation__name">GiffyGram</div>
+    <div class= "navigation__item navigation__search"></div>
+    <div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
+    <div class= "notification__count">0</div>
+    <div class= "navigation__item navigation__logout"> <button id="logout" class="fakeLink">Logout</button></div>
+    </nav>`
 
     return html
 }
@@ -38,7 +52,7 @@ export const getNavBar = () => {
 /* CSS classes & IDs
 navigation (header bar), navigation__item, navigation__name (title), navigation__icon >img (logo), 
 navigation__message, navigation__message>img, navigation__messageItem, notification__count, navigation__logout,
-#directMessageIcon
+#directMessageIcon, fakeLink
 /*
 
 /* EXAMPLE - export html
@@ -158,3 +172,16 @@ export const NavBar = ()=>{
 }
 ;
 */
+
+// NOTES Fri May 21
+/*
+// event listener for compose DM
+/*document.addEventListener(
+    "click",
+    (clickEvent) => {
+        if (clickEvent.target.id === "navigation__message") {
+            direct to msg entry form
+
+
+// event listener for read new DMs event listener .length on msgs array by id
+// event listener for logout - event listener for clear temp state/go to login */
