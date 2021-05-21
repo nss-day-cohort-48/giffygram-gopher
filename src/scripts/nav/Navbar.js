@@ -56,16 +56,25 @@ document.addEventListener(
             ???
         }
     )
+*/
+// event listener for new DMs counter
 
-    
-    /* event listener for logout - clear temp state/go to login 
-    document.addEventListener(
-        "click",
-        (clickEvent) => {
-            if (clickEvent.target.id === "navigation__logout")
+
+// event listener for logout - clear temp state/go to login 
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        if (clickEvent.target.id === "logout") {
+            let user = parseInt(localStorage.getItem("gg_user"))
+            if (user >= 0) {
+                localStorage.clear();
+                document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+            }
         }
-    )
-    */
+
+    }
+)
+
 
 
 
