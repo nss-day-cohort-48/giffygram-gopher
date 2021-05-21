@@ -1,3 +1,4 @@
+
 import { LoginForm } from "./auth/Login.js"
 import { fetchPosts, fetchUsers } from "./data/provider.js"
 import { GiffyGram } from "./GiffyGram.js"
@@ -5,6 +6,7 @@ import { GiffyGram } from "./GiffyGram.js"
 
 const applicationElement = document.querySelector(".giffygram")
 
+// On page load 
 export const renderApp = () => {
     const user = parseInt(localStorage.getItem("gg_user"))
 
@@ -21,3 +23,10 @@ export const renderApp = () => {
 }
 
 renderApp()
+
+
+// "stateChanged" event listener
+applicationElement.addEventListener(
+    "stateChanged", customEvent => {
+        renderApp()
+    })

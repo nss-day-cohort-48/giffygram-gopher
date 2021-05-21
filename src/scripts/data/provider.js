@@ -37,7 +37,32 @@ export const fetchPosts = () => {
 
 
 
+
+// Post new giffy post with Fetch
+export const sendNewPost = (userNewPost) => {
+    const fetchOptions =  {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userNewPost)
+    }
+    //Re-rendering html with stateChange
+    return fetch(`${apiURL}/posts`, fetchOptions)
+    .then(response => response.json())
+    .then(() => {
+        applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+    })
+}
+
+
+
+
 // GETTER functions
 export const getUsers = () => {
     return [...applicationState.users]
+}
+
+export const getPosts = () => {
+    return [...applicationState.posts]
 }

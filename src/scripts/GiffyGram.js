@@ -1,15 +1,21 @@
 import { getNavBar } from "./nav/NavBar.js"
+import { PostEntry } from "./feed/PostEntry.js"
+import { postList } from "./feed/PostList.js"
+
 
 export const GiffyGram = () => {
 
-    // Show main main UI
+    // Show main UI
     return `
     <nav class="navigation"> ${getNavBar()} </nav>
-
+    
     <article class="giffygram__feed">
-        <div class="newPost"></div>
+        <div class="newPost">
+            ${PostEntry()}
+        </div>
+    
 
-        <section class="post"></section>
+        <section class="post">${postList()}</section>
     </article>
 
     <footer class="footer"></footer>
