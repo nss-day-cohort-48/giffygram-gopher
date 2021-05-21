@@ -1,4 +1,4 @@
-import { getNavBar } from "./nav/NavBar.js"
+import { getNavBar } from "./nav/Navbar.js"
 import { PostEntry } from "./feed/PostEntry.js"
 import { postList } from "./feed/PostList.js"
 import { DirectMessageForm } from "./message/MessageForm.js"
