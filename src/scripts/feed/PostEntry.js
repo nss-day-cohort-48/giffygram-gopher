@@ -69,7 +69,7 @@ export const PostEntry = () => {
      // Need to find a way to keep form showing after saving post
     if (document.querySelector(".miniMode") === document.querySelector(".miniMode")) {
         return miniMode()
-    } else {
+    } else if (document.querySelector(".miniMode").style.display === "none"){
         return postEntryForm()
     }
 }
