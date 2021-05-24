@@ -57,7 +57,7 @@ document.addEventListener(
     "click",
     (clickEvent) => {
         if (clickEvent.target.id === "directMessageIcon") {
-           ***call exported write-direct-message function***
+           *** call exported write-direct-message function ***
         }
     })
 */
