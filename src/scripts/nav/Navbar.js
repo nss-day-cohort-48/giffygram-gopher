@@ -1,7 +1,11 @@
+import { renderApp } from "../main.js"
+// import { getMessages, setMessageDisplay } from "./data/provider.js"
+// original site imports {clearFilters} from same module
+
 export const getNavBar = () => {
     let html = `<nav class= "navigation">
     <div class= "navigation__item navigation__icon"> <img id= "logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>
-    <div class= "navigation__item navigation__name">GiffyGram</div>
+    <div class= "navigation__name" id="title">GiffyGram</div>
     <div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
     <div class= "notification__count">0</div>
     </div>
@@ -12,15 +16,12 @@ export const getNavBar = () => {
     return html
 }
 
-// import { getMessages, setMessageDisplay } from "./data/provider.js"
-// original site imports {clearFilters} from same module
-
 // click icon to re-render app
 document.addEventListener(
     "click",
     (clickEvent) => {
-        if (clickEvent.target.id === "navigation__icon") {
-            document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+        if (clickEvent.target.id === "logo") {
+            window.location.reload();
         }
     }
 )
@@ -29,11 +30,27 @@ document.addEventListener(
 document.addEventListener(
     "click",
     (clickEvent) => {
-        if (clickEvent.target.id === "navigation__name") {
-            document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+        if (clickEvent.target.id === "title") {
+            window.location.reload();
         }
     }
 )
+
+// event listener for logout - clear temp state/go to login 
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        if (clickEvent.target.id === "logout") {
+            let user = parseInt(localStorage.getItem("gg_user"))
+            if (user >= 0) {
+                localStorage.clear();
+                document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        }
+
+    }
+)
+
 
 /* event listener for composing DM ---
 document.addEventListener(
@@ -59,27 +76,19 @@ document.addEventListener(
 document.addEventListener(
     "change",
     (changEvent) => {
-        if state change has recipientId that's the same as current user id
+        if state change has recipientId that's the same as current user id 
         for each occurence of current user === recipientId add one,
         return updated html text in DM counter to reflect integer total from ^^^ above addition
-    }
-)
-
-
-// event listener for logout - clear temp state/go to login 
-document.addEventListener(
-    "click",
-    (clickEvent) => {
-        if (clickEvent.target.id === "logout") {
-            let user = parseInt(localStorage.getItem("gg_user"))
-            if (user >= 0) {
-                localStorage.clear();
-                document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
+        ***copied from main.js: 
+        const user = parseInt(localStorage.getItem("gg_user"))
+        if (user) {
+                applicationElement.innerHTML = GiffyGram()
             }
-        }
-
+        ***
     }
 )
+
+
 
 
 
