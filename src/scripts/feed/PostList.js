@@ -1,4 +1,4 @@
-import { getPosts, getUsers, makeLikedPost, getFavorites } from "../data/provider.js"
+import { getPosts, getUsers, makeLikedPost, getFavorites, deleteLike } from "../data/provider.js"
 
 
 document.addEventListener("click", clickEvent => {
@@ -18,6 +18,8 @@ document.addEventListener("click", clickEvent => {
         makeLikedPost(newLikeToSendToServer)
 
 
+    }else{
+        deleteLike()
     }
 })
 
@@ -40,27 +42,26 @@ export const postList = () => {
             }
         }
 
-
-
-
-
         const currentuser = parseInt(localStorage.getItem("gg_user"))
-        let favpost = document.getElementById.startsWith("favoritePost")
-        let usersFavs = " "
+
+
+        let usersFavs = ` `
         for (const favs of favorites){
+            let favpost = document.getElementById.startsWith("favoritePost")
             let [, favPostId] = favpost.split("--")
-            favPostId = parseInt(favPostId)
-            if (currentuser === favs.userId && favs.postId === favPostId){
-                userFavs = "./images/favorite-star-yellow.svg"
+            favoritePostId = parseInt(favPostId)
+            if (currentuser === favs.userId && favs.postId === favoritePostId){
+                userFavs = `<img src="./images/favorite-star-yellow.svg" id="favoritePost--${post.id}" class="actionIcon" >`
             }
                 else{
-                    usersFavs =  "./images/favorite-star-blank.svg"
+                    usersFavs =  `<img src="./images/favorite-star-blank.svg" id="favoritePost--${post.id}" class="actionIcon" >`
                 }
         }
 
-
-
-
+        let trashcan = ``
+        if (post.userId === currentuser){
+            trashcan = `<img id="blockPost--${post.id}" class="actionIcon" src="/images/block.svg" >`
+        }
 
         return `
         <div class="post">
@@ -68,7 +69,8 @@ export const postList = () => {
         <img class="post__image" src = "${post.imageURL}">
         <div class="">${post.description}</div>${post.id}
        <div class="post__tagline">posted by ${username} on </div>
-       <img src="${usersFavs}" id="favoritePost--${post.id}" class="actionIcon" >
+       ${trashcan}
+       <img src="./images/favorite-star-blank.svg" id="favoritePost--${post.id}" class="actionIcon" >
        </div>
         `
     })
@@ -83,6 +85,3 @@ export const postList = () => {
 
 
 // teams.sort(function (teamA, teamB) {return teamB.score - teamA.score})
-
-    //<img id="blockPost--1" class="actionIcon" src="/images/block.svg" >
-    //return formmated posts
