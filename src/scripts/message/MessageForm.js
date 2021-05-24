@@ -1,8 +1,9 @@
 import { getUsers } from "../data/provider.js"
 
-
+//! Need to find current user and NOT show that user in dropdown list
 export const DirectMessageForm = () => {
     const users = getUsers()
+    const userArray = filterOutCurrentUser(users)
     let messageHTML = ` `
 
     messageHTML += `
@@ -13,7 +14,7 @@ export const DirectMessageForm = () => {
             <select name="directMessage__userSelect" class="message__input">
                 <option>Choose a recipient...</option>
                 ${
-                    users.map(
+                    userArray.map(
                         user => {
                             return `<option value="${user.id}">${user.name}</option>`
                         }
@@ -32,5 +33,13 @@ export const DirectMessageForm = () => {
     </div>`
 
     return messageHTML
+}
+
+
+// Function to filter out Current User and return array of users to DM
+const filterOutCurrentUser = (userArray) => {
+    const currentUserId = parseInt(localStorage.getItem("gg_user"))
+    let newUserArray = userArray.filter(user => user.id !== currentUserId)
+    return newUserArray
 }
 
