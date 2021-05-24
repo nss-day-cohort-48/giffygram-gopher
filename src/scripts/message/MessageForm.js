@@ -42,6 +42,26 @@ applicationElement.addEventListener("click", clickEvent => {
 })
 
 
+
+// Click event for Cancel Button
+applicationElement.addEventListener("click",
+    clickEvent => {
+        if (clickEvent.target.id === "directMessage__cancel") {
+            const hideMessageForm = document.querySelector(".directMessage")
+            hideMessageForm.innerHTML = miniMode()
+        }
+})
+
+// Click event for X on form
+applicationElement.addEventListener("click",
+    clickEvent => {
+        if (clickEvent.target.id === "directMessage__close") {
+            const hideMessageForm = document.querySelector(".directMessage")
+            hideMessageForm.innerHTML = miniMode()
+        }
+    })
+
+
 export const DirectMessageForm = () => {
     const users = getUsers()
     const userArray = filterOutCurrentUser(users)
@@ -78,7 +98,7 @@ export const DirectMessageForm = () => {
 
 
 
-//! Need to find current user and NOT show that user in dropdown list
+
 // Function to filter out Current User and return array of users to DM
 const filterOutCurrentUser = (userArray) => {
     const currentUserId = parseInt(localStorage.getItem("gg_user"))
@@ -86,3 +106,9 @@ const filterOutCurrentUser = (userArray) => {
     return newUserArray
 }
 
+
+// Form Mini Mode Html
+const miniMode = () => {
+    const messageForm = document.querySelector(".directMessage")
+    messageForm.style.display = "none"
+}
