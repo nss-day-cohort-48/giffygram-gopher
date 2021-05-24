@@ -45,7 +45,7 @@ export const fetchDirectMessages = () => {
 
 
 
-// Post new giffy post with Fetch
+// Post new Giffy Post with Fetch
 export const sendNewPost = (userNewPost) => {
     const fetchOptions =  {
         method: "POST",
@@ -62,6 +62,22 @@ export const sendNewPost = (userNewPost) => {
     })
 }
 
+// Post new Direct Message with Fetch
+export const sendNewDirectMessage = (userNewMessage) => {
+    const fetchOptions =  {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userNewMessage)
+    }
+    //Re-rendering html with stateChange
+    return fetch(`${apiURL}/directMessages`, fetchOptions)
+    .then(response => response.json())
+    .then(() => {
+        applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+    })
+}
 
 
 
