@@ -132,5 +132,5 @@ export const getFavorites = () => {
 
 export const getDirectMessages = () => {
     return [...applicationState.directMessages]
-
+}
   
