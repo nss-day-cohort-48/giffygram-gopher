@@ -110,5 +110,5 @@ const filterOutCurrentUser = (userArray) => {
 // Form Mini Mode Html
 const miniMode = () => {
     const messageForm = document.querySelector(".directMessage")
-    messageForm.style.display = "none"
+    messageForm.remove()
 }
