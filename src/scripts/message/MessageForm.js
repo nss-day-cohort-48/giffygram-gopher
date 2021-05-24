@@ -1,6 +1,47 @@
-import { getUsers } from "../data/provider.js"
+import { getUsers, sendNewDirectMessage } from "../data/provider.js"
 
-//! Need to find current user and NOT show that user in dropdown list
+const applicationElement = document.querySelector(".giffygram")
+
+
+// Click event for Direct Message Form save Button
+applicationElement.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "directMessage__submit") {
+        //TODO: Need to find currentUser
+        const user = parseInt(localStorage.getItem("gg_user"))
+    
+        
+        // Grab what the user typed into the form fields
+        const directMessageRecipientId = parseInt(document.querySelector("#directMessage__userSelect").value)
+        const directMessage = document.querySelector("input[name='message']").value
+        
+
+        // Checks to see if message field is empty, if so, event listener returns before sending data to APT
+        if (directMessage === "") {
+            window.alert("Please supply a message.")
+            return
+        }
+
+        // Checks to see if user chose a recipient 
+        if (directMessageRecipientId === 0) {
+            window.alert("Please choose a recipient")
+            return
+        }
+
+
+        // Make new object out of the user input
+        const newDirectMessageToSendToServer = {
+            message: directMessage,
+            read: false,
+            recipientId: directMessageRecipientId,
+            senderId: user
+        }
+
+        // Send data to the API for permanent storage
+        sendNewDirectMessage(newDirectMessageToSendToServer)
+    }
+})
+
+
 export const DirectMessageForm = () => {
     const users = getUsers()
     const userArray = filterOutCurrentUser(users)
@@ -11,8 +52,8 @@ export const DirectMessageForm = () => {
         <h3>Direct Message</h3>
         <div>
             Recipient
-            <select name="directMessage__userSelect" class="message__input">
-                <option>Choose a recipient...</option>
+            <select id="directMessage__userSelect" class="message__input">
+                <option value="0">Choose a recipient...</option>
                 ${
                     userArray.map(
                         user => {
@@ -36,6 +77,8 @@ export const DirectMessageForm = () => {
 }
 
 
+
+//! Need to find current user and NOT show that user in dropdown list
 // Function to filter out Current User and return array of users to DM
 const filterOutCurrentUser = (userArray) => {
     const currentUserId = parseInt(localStorage.getItem("gg_user"))
