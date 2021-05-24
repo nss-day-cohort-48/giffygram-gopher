@@ -1,11 +1,8 @@
 export const getNavBar = () => {
     let html = `<nav class= "navigation">
     <div class= "navigation__item navigation__icon"> <img id= "logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>
-    <div class= "navigation__item navigation__name">GiffyGram</div>`
-
-    // <div class= "navigation__item navigation__search"></div>
-
-    html += `<div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
+    <div class= "navigation__item navigation__name">GiffyGram</div>
+    <div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
     <div class= "notification__count">0</div>
     </div>
 
@@ -38,7 +35,7 @@ document.addEventListener(
     }
 )
 
-/* event listener for compose DM ---
+/* event listener for composing DM ---
 document.addEventListener(
     "click",
     (clickEvent) => {
@@ -57,7 +54,16 @@ document.addEventListener(
         }
     )
 */
-// event listener for new DMs counter
+// event listener to update new DMs counter
+/*
+document.addEventListener(
+    "change",
+    (changEvent) => {
+        if state change has recipientId that's the same as current user id
+        for each occurence of current user === recipientId add one,
+        return updated html text in DM counter to reflect integer total from ^^^ above addition
+    }
+)
 
 
 // event listener for logout - clear temp state/go to login 
