@@ -7,7 +7,7 @@ export const getNavBar = () => {
     <div class= "navigation__item navigation__icon"> <img id= "logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>
     <div class= "navigation__name" id="title">GiffyGram</div>
     <div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
-    <div class= "notification__count">0</div>
+    <div class= "notification__count id="readNewMessages">0</div>
     </div>
 
     <div class= "navigation__item navigation__logout"> <button id="logout" class="fakeLink">Logout</button></div>
@@ -56,8 +56,8 @@ document.addEventListener(
 document.addEventListener(
     "click",
     (clickEvent) => {
-        if (clickEvent.target.id === "navigation__message") {
-            *** render msg entry form
+        if (clickEvent.target.id === "directMessageIcon") {
+           ***call exported write-direct-message function***
         }
     })
 */
@@ -66,7 +66,7 @@ document.addEventListener(
 document.addEventListener(
         "click",
         (clickEvent) => {
-            if (clickEvent.target.id === "notification__count") 
+            if (clickEvent.target.id === "readNewMessages") 
             ???
         }
     )
