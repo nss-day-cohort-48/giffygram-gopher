@@ -1,4 +1,4 @@
-import { renderApp } from "../main.js"
+import { DirectMessageForm } from "../message/MessageForm.js"
 // import { getMessages, setMessageDisplay } from "./data/provider.js"
 // original site imports {clearFilters} from same module
 
@@ -52,15 +52,14 @@ document.addEventListener(
 )
 
 
-/* event listener for composing DM ---
+
 document.addEventListener(
     "click",
     (clickEvent) => {
         if (clickEvent.target.id === "directMessageIcon") {
-           *** call exported write-direct-message function ***
+            DirectMessageForm()
         }
     })
-*/
 
 /* event listener for reading new DMs ---
 document.addEventListener(
