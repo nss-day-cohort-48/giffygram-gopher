@@ -10,14 +10,14 @@ export const GiffyGram = () => {
     return `
     <nav class="navigation"> ${getNavBar()} </nav>
     ${DirectMessageForm()}
-    <article class="giffygram__feed">
+    <div class="giffygram__feed">
         <div class="newPost">
             ${PostEntry()}
         </div>
     
 
         <section class="post">${postList()}</section>
-    </article>
+    </div>
 
     <footer class="footer"></footer>
     `

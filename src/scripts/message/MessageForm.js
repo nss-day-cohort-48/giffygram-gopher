@@ -2,6 +2,15 @@ import { getUsers, sendNewDirectMessage } from "../data/provider.js"
 
 const applicationElement = document.querySelector(".giffygram")
 
+// Click event for Pen Icon to render DM form
+applicationElement.addEventListener(
+    "click",
+    (clickEvent) => {
+        if (clickEvent.target.id === "directMessageIcon") {
+            applicationElement.querySelector("directMessage") = directMessageForm()
+        }
+    })
+
 
 // Click event for Direct Message Form save Button
 applicationElement.addEventListener("click", clickEvent => {
@@ -63,6 +72,12 @@ applicationElement.addEventListener("click",
 
 
 export const DirectMessageForm = () => {
+
+}
+
+
+// Function to render DM Form
+const directMessageForm = () => {
     const users = getUsers()
     const userArray = filterOutCurrentUser(users)
     let messageHTML = ` `
@@ -95,8 +110,6 @@ export const DirectMessageForm = () => {
 
     return messageHTML
 }
-
-
 
 
 // Function to filter out Current User and return array of users to DM
