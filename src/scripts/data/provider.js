@@ -55,6 +55,24 @@ export const sendNewPost = (userNewPost) => {
     })
 }
 
+export const makeLikedPost = (userLikedPost) => {
+    const fetchOptions =  {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userLikedPost)
+    }
+    //Re-rendering html with stateChange
+    return fetch(`${apiURL}/favorites`, fetchOptions)
+    .then(response => response.json())
+    .then(() => {
+        applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+    })
+}
+
+
+
 
 
 
@@ -65,4 +83,8 @@ export const getUsers = () => {
 
 export const getPosts = () => {
     return [...applicationState.posts]
+}
+
+export const getFavorites = () => {
+    return [...applicationState.favorites]
 }
