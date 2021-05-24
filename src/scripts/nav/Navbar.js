@@ -1,10 +1,11 @@
 import { renderApp } from "../main.js"
 // import { getMessages, setMessageDisplay } from "./data/provider.js"
+// original site imports {clearFilters} from same module
 
 export const getNavBar = () => {
     let html = `<nav class= "navigation">
     <div class= "navigation__item navigation__icon"> <img id= "logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>
-    <div class= "navigation__item navigation__name">GiffyGram</div>
+    <div class= "navigation__name" id="title">GiffyGram</div>
     <div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
     <div class= "notification__count">0</div>
     </div>
@@ -14,9 +15,6 @@ export const getNavBar = () => {
 
     return html
 }
-
-
-// original site imports {clearFilters} from same module
 
 // click icon to re-render app
 document.addEventListener(
@@ -32,7 +30,7 @@ document.addEventListener(
 document.addEventListener(
     "click",
     (clickEvent) => {
-        if (clickEvent.target.id === "navigation__item.navigation__name") {
+        if (clickEvent.target.id === "title") {
             window.location.reload();
         }
     }
