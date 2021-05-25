@@ -57,9 +57,21 @@ document.addEventListener(
     "click",
     (clickEvent) => {
         if (clickEvent.target.id === "directMessageIcon") {
-            DirectMessageForm()
+            const openMessageForm = document.querySelector(".directMessage")
+            openMessageForm.innerHTML = DirectMessageForm()
         }
     })
+
+
+// event listener from MessageForm.js that targets direct message
+/* Click event for Cancel Button
+applicationElement.addEventListener("click",
+    clickEvent => {
+        if (clickEvent.target.id === "directMessage__cancel") {
+            const hideMessageForm = document.querySelector(".directMessage")
+            hideMessageForm.innerHTML = miniMode()
+        }
+}) */
 
 /* event listener for reading new DMs ---
 document.addEventListener(
@@ -86,6 +98,18 @@ document.addEventListener(
         ***
     }
 )
+
+
+-----------------------------------
+
+
+
+
+
+
+
+
+
 
 
 
