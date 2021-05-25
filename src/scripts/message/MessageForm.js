@@ -1,6 +1,7 @@
 import { getUsers, sendNewDirectMessage } from "../data/provider.js"
 
 const applicationElement = document.querySelector(".giffygram")
+// Setting form value
 let messageForm = true
 
 // Click event for Pen Icon to render DM form
