@@ -35,34 +35,11 @@ export const fetchPosts = () => {
     })
 }
 
-export const fetchDirectMessages = () => {
-    return fetch(`${apiURL}/directMessages`)
-    .then(response => response.json())
-    .then(directMessageData => {
-        applicationState.directMessages = directMessageData
-    })
-}
 
 
 
-// Post new Giffy Post with Fetch
-export const sendNewPost = (userNewPost) => {
-    const fetchOptions =  {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userNewPost)
-    }
-    //Re-rendering html with stateChange
-    return fetch(`${apiURL}/posts`, fetchOptions)
-    .then(response => response.json())
-    .then(() => {
-        applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
-    })
-}
+// Post new giffy post with Fetch
 
-// Post new Direct Message with Fetch
 export const sendNewDirectMessage = (userNewMessage) => {
     const fetchOptions =  {
         method: "POST",
@@ -79,6 +56,65 @@ export const sendNewDirectMessage = (userNewMessage) => {
     })
 }
 
+export const sendNewPost = (userNewPost) => {
+    const fetchOptions =  {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userNewPost)
+    }
+    //Re-rendering html with stateChange
+    return fetch(`${apiURL}/posts`, fetchOptions)
+    .then(response => response.json())
+    .then(() => {
+        applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+    })
+}
+
+export const makeLikedPost = (userLikedPost) => {
+    const fetchOptions =  {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userLikedPost)
+    }
+    //Re-rendering html with stateChange
+    return fetch(`${apiURL}/favorites`, fetchOptions)
+    .then(response => response.json())
+    .then(() => {
+        applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+    })
+}
+
+export const fetchDirectMessages = () => {
+    return fetch(`${apiURL}/directMessages`)
+    .then(response => response.json())
+    .then(directMessageData => {
+        applicationState.directMessages = directMessageData
+    })
+}
+
+export const deletePost = (id) => {
+    return fetch(`${apiURL}/posts/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+
+export const deleteLike = (id) => {
+    return fetch(`${apiURL}/favorites/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
+}
+
+
 
 
 // GETTER functions
@@ -90,6 +126,11 @@ export const getPosts = () => {
     return [...applicationState.posts]
 }
 
+export const getFavorites = () => {
+    return [...applicationState.favorites]}
+
+
 export const getDirectMessages = () => {
     return [...applicationState.directMessages]
 }
+  
