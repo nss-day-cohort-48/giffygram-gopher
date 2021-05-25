@@ -7,7 +7,7 @@ export const getNavBar = () => {
     <div class= "navigation__item navigation__icon"> <img id= "logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>
     <div class= "navigation__name" id="title">GiffyGram</div>
     <div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
-    <div class= "notification__count id="readNewMessages">0</div>
+    <div class= "notification__count" id="readNewMessages">0</div>
     </div>
 
     <div class= "navigation__item navigation__logout"> <button id="logout" class="fakeLink">Logout</button></div>

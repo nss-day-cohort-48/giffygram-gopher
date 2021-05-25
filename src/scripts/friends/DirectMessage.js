@@ -1,30 +1,40 @@
-import { getDirectMessages, getUsers } from "../data/provider.js"
+import { getDirectMessages, getUsers, setDisplayMessages } from "../data/provider.js"
+import { getNavBar } from "../nav/NavBar.js"
+// import { Footer } from "../nav/Footer.js"
 
 //generating message list
-// 1. identify new (unread) messages
-// 2. iterate/compare user.id to recipientId to get user's DMs
-// 3. iterate/compare senderId to user.id to get sender name
-// 4. render html of sender name and text of new messages
-// 5. change current rendered messages' status to "read" in db
+// 5. change current rendered messages' status to "read:true" in db
+// 6. dispatch statement goes where?
 
+// click event to load unread messages
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        if (clickEvent.target.id === "readNewMessages") {
+            setDisplayMessages()
+        }
+    }
+)
 
-export const messageList = () => {
-        const messages = getDirectMessages()
-        const users = getUsers()
+export const DirectMessageList = () => {
+    const messages = getDirectMessages()
+    const users = getUsers()
+    const currentUser = parseInt(localStorage.getItem("gg_user"))
 
-
-        let html = `<div id="messages">`
-
-        const listItems = messages.map(message => {
-            // convert sender id to sender name
-            let senderName = null
-            for (const message of messages) {
-                if
-
-                if message.recipientId === user.Id
-                else if
+    const userInbox = messages.filter(
+        (messageObject) => {
+            if (messageObject.recipientId === currentUser && messageObject.read === false) {
+                return true
             }
-        })
-
-
-        html += `</div>`
+        }
+    )
+    const renderNewMessages = userInbox.map(
+        (messageObject) => {
+            return `${getNavBar()} <div class="message--${messageObject.id}></div>
+            <div class="message__author">From ${messageObject.senderId}</div>
+            <div class="message__text">${messageObject.message}</div>`
+                // ***add inside backtick above: ${Footer()}***
+        }
+    ).join("")
+    return renderNewMessages
+}
