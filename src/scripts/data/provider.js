@@ -134,3 +134,7 @@ export const getDirectMessages = () => {
     return [...applicationState.directMessages]
 }
   
+// SETTER functions
+export const setChosenUser = (userId) => {
+    applicationState.feed.chosenUser = userId
+}
