@@ -21,9 +21,10 @@ document.addEventListener("click", clickEvent => {
 
 
     }else{
+        const currentuser = parseInt(localStorage.getItem("gg_user"))
         const itemClicked = clickEvent.target
         if (itemClicked.id.startsWith("favoritePost" && currentuser === favorites.userId)){
-        deleteLike()
+        deleteLike(favorites.id)
     }
     }
 })
