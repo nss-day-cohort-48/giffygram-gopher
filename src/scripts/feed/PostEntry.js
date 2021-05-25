@@ -2,6 +2,7 @@ import { getUsers, sendNewPost } from "../data/provider.js"
 
 
 const applicationElement = document.querySelector(".giffygram")
+// Setting form value
 let postForm = true
 
 // Click event for Post Entry form Save Button
