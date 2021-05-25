@@ -1,12 +1,25 @@
 import { getUsers, sendNewDirectMessage } from "../data/provider.js"
 
 const applicationElement = document.querySelector(".giffygram")
+// Setting form value
+let messageForm = true
+
+// Click event for Pen Icon to render DM form
+applicationElement.addEventListener(
+    "click",
+    (clickEvent) => {
+        if (clickEvent.target.id === "directMessageIcon") {
+            // messageForm becomes false which will SHOW DM form until changed by another click event
+            messageForm = false
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+        }
+    })
 
 
 // Click event for Direct Message Form save Button
 applicationElement.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "directMessage__submit") {
-        //TODO: Need to find currentUser
+        // Need to find currentUser
         const user = parseInt(localStorage.getItem("gg_user"))
     
         
@@ -47,8 +60,9 @@ applicationElement.addEventListener("click", clickEvent => {
 applicationElement.addEventListener("click",
     clickEvent => {
         if (clickEvent.target.id === "directMessage__cancel") {
-            const hideMessageForm = document.querySelector(".directMessage")
-            hideMessageForm.innerHTML = miniMode()
+            // messageForm becomes true which will HIDE DM form until changed by another click event
+            messageForm = true
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
         }
 })
 
@@ -56,10 +70,14 @@ applicationElement.addEventListener("click",
 applicationElement.addEventListener("click",
     clickEvent => {
         if (clickEvent.target.id === "directMessage__close") {
-            const hideMessageForm = document.querySelector(".directMessage")
-            hideMessageForm.innerHTML = miniMode()
+            // messageForm becomes true which will HIDE DM form until changed by another click event
+            messageForm = true
+            applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
         }
     })
+
+
+
 
 
 export const DirectMessageForm = () => {
@@ -67,7 +85,11 @@ export const DirectMessageForm = () => {
     const userArray = filterOutCurrentUser(users)
     let messageHTML = ` `
 
-    messageHTML += `
+    // If messageForm is TRUE - hide DM form (return empty string)...  else it is FALSE - show DM form
+    if (messageForm) {
+        return ""
+    } else {
+        messageHTML += `
     <div class="directMessage">
         <h3>Direct Message</h3>
         <div>
@@ -94,8 +116,8 @@ export const DirectMessageForm = () => {
     </div>`
 
     return messageHTML
+    }
 }
-
 
 
 
@@ -104,11 +126,4 @@ const filterOutCurrentUser = (userArray) => {
     const currentUserId = parseInt(localStorage.getItem("gg_user"))
     let newUserArray = userArray.filter(user => user.id !== currentUserId)
     return newUserArray
-}
-
-
-// Form Mini Mode Html
-const miniMode = () => {
-    const messageForm = document.querySelector(".directMessage")
-    messageForm.remove()
 }
