@@ -1,5 +1,7 @@
 import { getPosts, getUsers, makeLikedPost, getFavorites, deleteLike } from "../data/provider.js"
-
+const posts = getPosts()
+const users = getUsers()
+const favorites = getFavorites()
 
 document.addEventListener("click", clickEvent => {
     const itemClicked = clickEvent.target
@@ -19,7 +21,10 @@ document.addEventListener("click", clickEvent => {
 
 
     }else{
+        const itemClicked = clickEvent.target
+        if (itemClicked.id.startsWith("favoritePost" && currentuser === favorites.userId)){
         deleteLike()
+    }
     }
 })
 
