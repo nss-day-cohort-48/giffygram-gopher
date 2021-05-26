@@ -12,15 +12,29 @@ const applicationState = {
     feed: {
         chosenUser: null,
         displayFavorites: false,
-        displayMessages: false
+        displayMessages: false,
+        chosenYear: null
     }
 }
 
-//Setter functions - display messages
+//Setter functions 
 export const setDisplayMessages = () => {
     applicationState.feed.displayMessages = true
     applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
 }
+
+export const setChosenUser = (userId) => {
+    applicationState.feed.chosenUser = userId
+    applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const setChosenYear = (userYear) => {
+    applicationState.feed.chosenYear = userYear
+    applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+
+
 
 // Fetch requests
 export const fetchUsers = () => {
@@ -135,3 +149,8 @@ export const getFavorites = () => {
 export const getDirectMessages = () => {
     return [...applicationState.directMessages]
 }
+
+export const getFeed = () => {
+    return { ...applicationState.feed }
+}
+  
