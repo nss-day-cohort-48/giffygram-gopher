@@ -1,14 +1,13 @@
-import { getDirectMessages, getUsers, setDisplayMessages } from "../data/provider.js"
-import { Footer } from "../nav/Footer.js"
+import { getDirectMessages, setDisplayMessages, getDisplayMessages } from "../data/provider.js"
 import { getNavBar } from "../nav/NavBar.js"
-// import { Footer } from "../nav/Footer.js"
 
-//generating message list
-// 5. change current rendered messages' status to "read:true" in db
-// 6. dispatch statement goes where?
+
+const applicationElement = document.querySelector(".giffygram")
+
+
 
 // click event to load unread messages
-document.addEventListener(
+applicationElement.addEventListener(
     "click",
     (clickEvent) => {
         if (clickEvent.target.id === "readNewMessages") {
@@ -29,16 +28,19 @@ export const DirectMessageList = () => {
         }
     )
 
-    let html = `${getNavBar()}`
-    userInbox.map(
-        (messageObject) => {
-            html += ` <div class="message--${messageObject.id}></div>
-            <div class="message__author">From ${messageObject.senderId}</div>
-            <div class="message__text">${messageObject.message}</div>`
-                
+    let html = `${getNavBar()}
+         <div class="messages">
+            <div class="messageList">`
+                userInbox.map(messageObject => {
+                    html += `
+                            <div class="message" id="message--${messageObject.id}">
+                                <div class="message__author">From ${messageObject.senderId}</div>
+                                <div class="message__text">${messageObject.message}</div>
+                            </div>`  
         }
     ).join("")
 
-    html += `${Footer()}`
+    html += `</div>
+        </div>`
     return html
 }
