@@ -5,16 +5,30 @@ import { GiffyGram } from "./GiffyGram.js"
 
 
 const applicationElement = document.querySelector(".giffygram")
-@ @ - 15, 7 + 15, 9 @ @
+
+// On page load 
 export const renderApp = () => {
-    () => {
-        if (user) {
-            applicationElement.innerHTML = GiffyGram()
-        } else {
-            applicationElement.innerHTML = LoginForm()
+    const user = parseInt(localStorage.getItem("gg_user"))
+
+    // Call fetches here before any html loads
+    fetchUsers().then(fetchPosts).then(fetchDirectMessages).then(
+        () => {
+            if (user) {
+                applicationElement.innerHTML = GiffyGram()
+            } else {
+                applicationElement.innerHTML = LoginForm()
+            }
         }
-    }
-    @ @ - 32, 18 + 34, 18 @ @ applicationElement.addEventListener(
+    )
+}
+
+renderApp()
+
+
+// "stateChanged" event listener
+applicationElement.addEventListener(
+    "stateChanged", customEvent => {
+        renderApp()
     })
 
 
