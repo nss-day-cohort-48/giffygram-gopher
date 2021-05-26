@@ -36,7 +36,7 @@ applicationElement.addEventListener("click", clickEvent => {
             imageURL: postURL,
             description: postDescription,
             userId: user,
-            timestamp: Date.now()
+            timestamp: Math.round((new Date()).getTime() / 1000)
         }
 
         // Send data to the API for permanent storage
