@@ -53,7 +53,13 @@ export const fetchPosts = () => {
         })
 }
 
-
+export const fetchDirectMessages = () => {
+    return fetch(`${apiURL}/directMessages`)
+        .then(response => response.json())
+        .then(directMessageData => {
+            applicationState.directMessages = directMessageData
+        })
+}
 
 
 // Post new giffy post with Fetch
@@ -106,13 +112,10 @@ export const makeLikedPost = (userLikedPost) => {
         })
 }
 
-export const fetchDirectMessages = () => {
-    return fetch(`${apiURL}/directMessages`)
-        .then(response => response.json())
-        .then(directMessageData => {
-            applicationState.directMessages = directMessageData
-        })
-}
+
+
+
+
 
 export const deletePost = (id) => {
     return fetch(`${apiURL}/posts/${id}`, { method: "DELETE" })
@@ -131,6 +134,9 @@ export const deleteLike = (id) => {
             }
         )
         }
+
+
+
 
 // GETTER functions
 export const getUsers = () => {
@@ -152,5 +158,9 @@ export const getDirectMessages = () => {
 
 export const getFeed = () => {
     return { ...applicationState.feed }
+}
+
+export const getDisplayMessages = () => {
+    return applicationState.feed.displayMessages
 }
   
