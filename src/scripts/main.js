@@ -1,36 +1,19 @@
 import { LoginForm } from "./auth/Login.js"
 import { fetchDirectMessages, fetchPosts, fetchUsers, deletePost, deleteLike } from "./data/provider.js"
 import { GiffyGram } from "./GiffyGram.js"
-import { DirectMessageList } from "./friends/DirectMessage.js"
 
 
 const applicationElement = document.querySelector(".giffygram")
-
-// On page load 
+@ @ - 15, 7 + 15, 9 @ @
 export const renderApp = () => {
-    const user = parseInt(localStorage.getItem("gg_user"))
-
-    // Call fetches here before any html loads
-    fetchUsers().then(fetchPosts).then(fetchDirectMessages).then(
-        () => {
-            if (user) {
-                applicationElement.innerHTML = GiffyGram()
-            } //  else if () {
-            // applicationElement.innerHTML = DirectMessageList()
-            else {
-                applicationElement.innerHTML = LoginForm()
-            }
+    () => {
+        if (user) {
+            applicationElement.innerHTML = GiffyGram()
+        } else {
+            applicationElement.innerHTML = LoginForm()
         }
-    )
-}
-
-renderApp()
-
-
-// "stateChanged" event listener
-applicationElement.addEventListener(
-    "stateChanged", customEvent => {
-        renderApp()
+    }
+    @ @ - 32, 18 + 34, 18 @ @ applicationElement.addEventListener(
     })
 
 

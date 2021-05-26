@@ -16,7 +16,7 @@ const applicationState = {
     }
 }
 
-//Setter- display messages
+//Setter functions - display messages
 export const setDisplayMessages = () => {
     applicationState.feed.displayMessages = true
     applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
