@@ -1,5 +1,5 @@
 import { getDirectMessages, setDisplayMessages, getUsers } from "../data/provider.js"
-import { getNavBar } from "../nav/NavBar.js"
+import { getNavBar } from "../nav/Navbar.js"
 
 
 const applicationElement = document.querySelector(".giffygram")
