@@ -113,7 +113,7 @@ export const postList = () => {
         <div class="">${post.description}</div>
        <div class="post__tagline">posted by ${username} on ${timeStamp} </div>
        ${trashcan}
-       <img src=""/images/favorite-star-blank.svg" " id="favoritePost--${post.id}" class="actionIcon" >
+       <img src="/images/favorite-star-blank.svg" " id="favoritePost--${post.id}" class="actionIcon" >
        </div>
         `
     })
