@@ -1,17 +1,12 @@
 import { getPosts, getUsers, makeLikedPost, getFavorites, deleteLike } from "../data/provider.js"
-const posts = getPosts()
-const users = getUsers()
-const favorites = getFavorites()
 
 document.addEventListener("click", clickEvent => {
     const itemClicked = clickEvent.target
     if (itemClicked.id.startsWith("favoritePost")) {
-
         const [, postId] = itemClicked.id.split("--")
-
         const currentuser = parseInt(localStorage.getItem("gg_user"))
-
         // Make new object out of the user input
+
         const newLikeToSendToServer = {
             userId: currentuser,
             postId: parseInt(postId),
@@ -23,8 +18,11 @@ document.addEventListener("click", clickEvent => {
     }else{
         const currentuser = parseInt(localStorage.getItem("gg_user"))
         const itemClicked = clickEvent.target
-        if (itemClicked.id.startsWith("favoritePost" && currentuser === favorites.userId)){
-        deleteLike(favorites.id)
+        if (itemClicked.id.startsWith("favoritePost")){
+            if(currentuser === favorites.userId){
+                deleteLike(favorites.id)
+            }
+        
     }
     }
 })
@@ -35,48 +33,41 @@ export const postList = () => {
     const posts = getPosts()
     const users = getUsers()
     const favorites = getFavorites()
+    const currentuser = parseInt(localStorage.getItem("gg_user"))
+
     let html = `<div class="giffygram__feed">`
 
-
     const listItems = posts.map(post => {
+
+        //Formatting Time
+        const unixTimestamp = post.timestamp
+        const milliseconds = parseInt(unixTimestamp) * 1000 
+        const dateObject = new Date(milliseconds)
+        const timeStamp = dateObject.toLocaleString("en-US", {timeZoneName: "short"})
 
         // converting userId to users name
         let username = null
         for (const user of users) {
-            if (post.userId === user.id) {
-                username = user.name
-            }
-        }
+            if (post.userId === user.id)
+                 { username = user.name }}
 
-        const currentuser = parseInt(localStorage.getItem("gg_user"))
+            
+  
 
-
-        let usersFavs = ` `
-        for (const favs of favorites){
-            let favpost = document.getElementById.startsWith("favoritePost")
-            let [, favPostId] = favpost.split("--")
-            favoritePostId = parseInt(favPostId)
-            if (currentuser === favs.userId && favs.postId === favoritePostId){
-                userFavs = `<img src="./images/favorite-star-yellow.svg" id="favoritePost--${post.id}" class="actionIcon" >`
-            }
-                else{
-                    usersFavs =  `<img src="./images/favorite-star-blank.svg" id="favoritePost--${post.id}" class="actionIcon" >`
-                }
-        }
-
+        //Rendering The Trashcan Depending On The Current User
         let trashcan = ``
-        if (post.userId === currentuser){
-            trashcan = `<img id="blockPost--${post.id}" class="actionIcon" src="/images/block.svg" >`
-        }
+        if (post.userId === currentuser) {trashcan = `<img id="blockPost--${post.id}" class="actionIcon" src="/images/block.svg" >`}
 
+
+        //Render The Posts
         return `
         <div class="post">
         <h3>${post.title}</h3>
         <img class="post__image" src = "${post.imageURL}">
-        <div class="">${post.description}</div>${post.id}
-       <div class="post__tagline">posted by ${username} on </div>
+        <div class="">${post.description}</div>
+       <div class="post__tagline">posted by ${username} on ${timeStamp} </div>
        ${trashcan}
-       <img src="./images/favorite-star-blank.svg" id="favoritePost--${post.id}" class="actionIcon" >
+       <img src=""/images/favorite-star-blank.svg" " id="favoritePost--${post.id}" class="actionIcon" >
        </div>
         `
     })

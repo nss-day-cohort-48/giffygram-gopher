@@ -113,10 +113,7 @@ export const deleteLike = (id) => {
                 applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
             }
         )
-}
-
-
-
+        }
 
 // GETTER functions
 export const getUsers = () => {
