@@ -1,20 +1,26 @@
-import { getUsers, setChosenUser } from "../data/provider.js"
+import { getUsers } from "../data/provider.js"
 
 const applicationElement = document.querySelector(".giffygram")
 
 // Change event for Year
-
+applicationElement.addEventListener("change", changeEvent => {
+    if (changeEvent.target.id === "yearSelection") {
+        const dropdownSelection = document.querySelector("select[id='yearSelection']")
+        const year = dropdownSelection.options.value
+        //setChosenYear(parseInt(year))
+    }
+})
 
 // Change event for Posts by User
 applicationElement.addEventListener("change", changeEvent => {
     if (changeEvent.target.id === "userSelection") {
         const [, userId] = changeEvent.target.value.split("--")
-        setChosenUser(parseInt(userId))
-
-        applicationElement.dispatchEvent(new CustomEvent("stateChanged"))
+        //setChosenUser(parseInt(userId))
     }
 })
 
+
+// Change event for Favorites checkbox
 
 
 

@@ -12,7 +12,8 @@ const applicationState = {
     feed: {
         chosenUser: null,
         displayFavorites: false,
-        displayMessages: false
+        displayMessages: false,
+        chosenYear: null
     }
 }
 
@@ -133,8 +134,8 @@ export const getFavorites = () => {
 export const getDirectMessages = () => {
     return [...applicationState.directMessages]
 }
-  
-// SETTER functions
-export const setChosenUser = (userId) => {
-    applicationState.feed.chosenUser = userId
+
+export const getFeed = () => {
+    return { ...applicationState.feed }
 }
+  
