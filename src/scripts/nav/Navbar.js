@@ -1,4 +1,4 @@
-import { renderApp } from "../main.js"
+import { DirectMessageForm } from "../message/MessageForm.js"
 // import { getMessages, setMessageDisplay } from "./data/provider.js"
 // original site imports {clearFilters} from same module
 
@@ -7,7 +7,7 @@ export const getNavBar = () => {
     <div class= "navigation__item navigation__icon"> <img id= "logo" src= "../images/pb.png" alt= "logo of peanut butter jar"/></div>
     <div class= "navigation__name" id="title">GiffyGram</div>
     <div class= "navigation__item navigation__message"><img id= "directMessageIcon" src= "../images/fountain-pen.svg" alt= "Direct message"/>
-    <div class= "notification__count">0</div>
+    <div class= "notification__count" id="readNewMessages">0</div>
     </div>
 
     <div class= "navigation__item navigation__logout"> <button id="logout" class="fakeLink">Logout</button></div>
@@ -52,21 +52,32 @@ document.addEventListener(
 )
 
 
-/* event listener for composing DM ---
+
 document.addEventListener(
     "click",
     (clickEvent) => {
-        if (clickEvent.target.id === "navigation__message") {
-            *** render msg entry form
+        if (clickEvent.target.id === "directMessageIcon") {
+            const openMessageForm = document.querySelector(".directMessage")
+            openMessageForm.innerHTML = DirectMessageForm()
         }
     })
-*/
+
+
+// event listener from MessageForm.js that targets direct message
+/* Click event for Cancel Button
+applicationElement.addEventListener("click",
+    clickEvent => {
+        if (clickEvent.target.id === "directMessage__cancel") {
+            const hideMessageForm = document.querySelector(".directMessage")
+            hideMessageForm.innerHTML = miniMode()
+        }
+}) */
 
 /* event listener for reading new DMs ---
 document.addEventListener(
         "click",
         (clickEvent) => {
-            if (clickEvent.target.id === "notification__count") 
+            if (clickEvent.target.id === "readNewMessages") 
             ???
         }
     )
@@ -87,6 +98,18 @@ document.addEventListener(
         ***
     }
 )
+
+
+-----------------------------------
+
+
+
+
+
+
+
+
+
 
 
 
