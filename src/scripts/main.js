@@ -19,9 +19,9 @@ export const renderApp = () => {
     fetchUsers().then(fetchPosts).then(fetchDirectMessages).then(
         () => {
             const user = parseInt(localStorage.getItem("gg_user"))
-            const displayMessages = getDisplayMessages()
+            const displayMessages = getDisplayMessages() // is displayMessages true or false?
 
-            if (displayMessages) {
+            if (displayMessages) { // if true run this line of code
                 applicationElement.innerHTML = DirectMessageList()
             }
             else if (user) {
