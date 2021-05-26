@@ -1,4 +1,5 @@
 import { getDirectMessages, getUsers, setDisplayMessages } from "../data/provider.js"
+import { Footer } from "../nav/Footer.js"
 import { getNavBar } from "../nav/NavBar.js"
 // import { Footer } from "../nav/Footer.js"
 
@@ -18,7 +19,6 @@ document.addEventListener(
 
 export const DirectMessageList = () => {
     const messages = getDirectMessages()
-    const users = getUsers()
     const currentUser = parseInt(localStorage.getItem("gg_user"))
 
     const userInbox = messages.filter(
@@ -28,13 +28,17 @@ export const DirectMessageList = () => {
             }
         }
     )
-    const renderNewMessages = userInbox.map(
+
+    let html = `${getNavBar()}`
+    userInbox.map(
         (messageObject) => {
-            return `${getNavBar()} <div class="message--${messageObject.id}></div>
+            html += ` <div class="message--${messageObject.id}></div>
             <div class="message__author">From ${messageObject.senderId}</div>
             <div class="message__text">${messageObject.message}</div>`
-                // ***add inside backtick above: ${Footer()}***
+                
         }
     ).join("")
-    return renderNewMessages
+
+    html += `${Footer()}`
+    return html
 }
