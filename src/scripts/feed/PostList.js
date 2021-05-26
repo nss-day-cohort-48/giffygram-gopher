@@ -1,4 +1,4 @@
-import { getPosts, getUsers, makeLikedPost, getFavorites, deleteLike } from "../data/provider.js"
+import { getPosts, getUsers, makeLikedPost, getFavorites, deleteLike, getFeed } from "../data/provider.js"
 
 document.addEventListener("click", clickEvent => {
     const itemClicked = clickEvent.target
@@ -34,6 +34,52 @@ export const postList = () => {
     const users = getUsers()
     const favorites = getFavorites()
     const currentuser = parseInt(localStorage.getItem("gg_user"))
+    const feed = getFeed()
+    const chosenUser = feed.chosenUser
+    const chosenYear = feed.chosenYear
+
+    if (chosenYear !== null) {
+        const postsByYear = posts.filter(post => {
+            const date = new Date(post.timestamp)
+            const postYear = date.getFullYear()
+            if (postYear >= chosenYear) {
+                return post
+            }
+
+        })
+        return `<div class="post">
+        ${
+            postsByYear.map(
+                post => {
+                    return `
+                    <h3>${post.title}</h3>
+                    <img class="post__image" src = "${post.imageURL}">
+                    <div class="">${post.description}</div>${post.id}
+                    <div class="post__tagline">posted by user name here </div>`
+                }
+            ).join("")
+        }
+        `
+    }
+
+    if (chosenUser) {
+        const filteredPosts = posts.filter(post => post.userId === chosenUser)
+        
+        return `<div class="post">
+        ${
+            filteredPosts.map(
+                post => {
+                    return `
+                    <h3>${post.title}</h3>
+                    <img class="post__image" src = "${post.imageURL}">
+                    <div class="">${post.description}</div>${post.id}
+                    <div class="post__tagline">posted by user name here </div>`
+                }
+            ).join("")
+        }
+        `
+    }
+
 
     let html = `<div class="giffygram__feed">`
 

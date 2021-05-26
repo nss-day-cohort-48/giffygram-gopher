@@ -1,4 +1,4 @@
-import { getUsers } from "../data/provider.js"
+import { getUsers, setChosenYear, setChosenUser } from "../data/provider.js"
 
 const applicationElement = document.querySelector(".giffygram")
 
@@ -7,7 +7,7 @@ applicationElement.addEventListener("change", changeEvent => {
     if (changeEvent.target.id === "yearSelection") {
         const dropdownSelection = document.querySelector("select[id='yearSelection']")
         const year = dropdownSelection.options.value
-        //setChosenYear(parseInt(year))
+        setChosenYear(parseInt(year))
     }
 })
 
@@ -15,7 +15,7 @@ applicationElement.addEventListener("change", changeEvent => {
 applicationElement.addEventListener("change", changeEvent => {
     if (changeEvent.target.id === "userSelection") {
         const [, userId] = changeEvent.target.value.split("--")
-        //setChosenUser(parseInt(userId))
+        setChosenUser(parseInt(userId))
     }
 })
 
