@@ -31,4 +31,4 @@ This was a learning project. Our goals were to practice deconstruction, create d
 ### Contributors
 1. Cody Jones
 2. Kelly Kessler
-3. Ashton Monzi!
+3. Ashton Monzi
