@@ -16,6 +16,12 @@ This was a learning project. Our goals were to practice deconstruction, create d
 ## ERD
 ![Screen Shot 2021-05-27 at 2 09 03 PM](https://user-images.githubusercontent.com/41700717/119883406-214ea800-bef5-11eb-81f8-dc27f4db96a1.png)
 
+## Application
+
+
+![2021-05-27 15 36 10](https://user-images.githubusercontent.com/41700717/119894120-d4250300-bf01-11eb-905c-38111feb6a2c.gif)
+
+
 
 ## Setup
 
