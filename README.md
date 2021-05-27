@@ -19,7 +19,7 @@ This was a learning project. Our goals were to practice deconstruction, create d
 
 ## Setup
 
-1. In the terminal, run `git clone git@github.com:nss-day-cohort-48/giffygram-gopher.git`
+1. In the terminal, run `git clone https://github.com/nss-day-cohort-48/giffygram-gopher.git`
 2. Move into the folder you just created `cd giffygram-gopher`
 
 ### Contributors
